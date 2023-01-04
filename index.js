@@ -10,9 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.json({ message: "El API ya funciona" });
+    res.json({ message: "El Servidor ya escucha :P" });
   });
-  
+
   app.listen(config.app.port, async () => {
     console.log(`Esuchando peticiones HTTP en el puerto ${config.app.port}`);
   
