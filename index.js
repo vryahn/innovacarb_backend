@@ -13,13 +13,13 @@ app.get("/", (req, res) => {
     res.json({ message: "El API ya funciona" });
   });
   
-  // Ejecutando el servidor HTTP
+
   app.listen(config.app.port, async () => {
     console.log(`Esuchando peticiones HTTP en el puerto ${config.app.port}`);
   
     try {
       await db.connect();
-      console.log("DB is connected 🤠");
+      console.log("DB is connected");
     } catch (err) {
       console.error("Connection refused:", err);
     }

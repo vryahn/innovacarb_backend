@@ -1,0 +1,23 @@
+{
+  "name": "innovacarb_backend",
+  "version": "1.0.0",
+  "description": "Innovacarb project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vryahn/innovacarb_backend.git"
+  },
+  "keywords": [
+    "js",
+    "node"
+  ],
+  "author": "@Sueenciso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vryahn/innovacarb_backend/issues"
+  },
+  "homepage": "https://github.com/vryahn/innovacarb_backend#readme"
+}
