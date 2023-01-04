@@ -13,7 +13,6 @@ app.get("/", (req, res) => {
     res.json({ message: "El API ya funciona" });
   });
   
-
   app.listen(config.app.port, async () => {
     console.log(`Esuchando peticiones HTTP en el puerto ${config.app.port}`);
   

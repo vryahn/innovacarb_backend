@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/vryahn/innovacarb_backend/issues"
   },
-  "homepage": "https://github.com/vryahn/innovacarb_backend#readme"
+  "homepage": "https://github.com/vryahn/innovacarb_backend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
