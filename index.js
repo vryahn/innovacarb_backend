@@ -1,6 +1,7 @@
 const express = require("express");
 const cors=require("cors")
 const app = express();
+const apiRouter=require("./src/routes");
 
 
 const config = require("./src/lib/config");
@@ -8,6 +9,7 @@ const db = require("./src/lib/db");
 
 app.use(cors());
 app.use(express.json());
+apiRouter(app);
 
 app.get("/", (req, res) => {
     res.json({ message: "El Servidor ya escucha :P" });

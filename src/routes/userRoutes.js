@@ -1,8 +1,9 @@
 const routes = require("express").Router();
-const { create, update, authenticate } = require("../usecases/user");
+const { create } = require("../usecases/user");
 
 routes.post("/", async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
 
   try {
     const payload = await create(email, password);
@@ -12,3 +13,5 @@ routes.post("/", async (req, res) => {
     res.status(400).json({ ok: false, message });
   }
 });
+
+module.exports=routes;
