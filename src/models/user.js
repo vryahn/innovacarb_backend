@@ -6,9 +6,7 @@ const schema = new Schema({
   hash: { type: String, require: true, trim: true },
   firstName: { type: String, require: true, trim: true },
   lastName: { type: String, require: true, trim: true },
-  contactInformation: { 
-    phone: { type: String, require: false, trim: true },
-  }
+  phone: { type: String, require: false, trim: true }
 });
 
 const model = mongoose.model("User", schema);
