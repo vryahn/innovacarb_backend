@@ -26,4 +26,18 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
+routes.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { userName, password } = req.body;
+
+  try {
+    const data = { userName, password };
+    const user = await update(id, password, userName);
+    res.json({ ok: true, payload: user });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message });
+  }
+});
+
 module.exports = routes;
