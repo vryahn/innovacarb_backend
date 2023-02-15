@@ -1,7 +1,9 @@
-const userRoutes=require("./userRoutes");
+const userRoutes = require("./userRoutes");
+const coffeshop = require("./coffeshopRoutes");
 
-const apiRouter=(app)=>{
-    app.use("/users",userRoutes);
+const apiRouter = (app) => {
+  app.use("/users", userRoutes);
+  app.coffeshop("/coffeshop", coffeshop);
 };
 
-module.exports=apiRouter;
+module.exports = apiRouter;

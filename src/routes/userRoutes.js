@@ -3,7 +3,7 @@ const { create, authenticate } = require("../usecases/user");
 
 routes.post("/", async (req, res) => {
   const { email, password } = req.body; //agregar firstname, lastName
-  console.log(req.body);
+  console.log(req.body);//noo olvides borrar esto!!!!!!!!!
 
   try {
     const payload = await create(email, password);
@@ -28,11 +28,11 @@ routes.post("/auth", async (req, res) => {
 
 routes.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { userName, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const data = { userName, password };
-    const user = await update(id, password, userName);
+    const data = { password };
+    const user = await update(id, email, password);
     res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;

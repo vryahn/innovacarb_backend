@@ -10,10 +10,10 @@ const create = async (email, password) => {
   return await user.save();
 };
 
-const update = async (id, password, userName) => {
+const update = async (id, email, password) => {
   const hash = await hashPassword(password);
 
-  return await User.findByIdAndUpdate(id, { hash, userName });
+  return await User.findByIdAndUpdate(id, { email, hash });
 };
 
 const findByEmail = async (email) => await User.findOne({ email });
