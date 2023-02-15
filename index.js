@@ -40,8 +40,8 @@ app.post("/api/checkout", async (req, res) => {
   try {
     const payment = await stripe.paymentIntents.create({
       amount,
-      currency: "USD",
-      description: "Gaming Keyboard",
+      currency: "MXN",
+      description: "Donativo",
       payment_method: id,
       confirm: true, 
     });
