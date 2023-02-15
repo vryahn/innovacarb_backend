@@ -6,7 +6,6 @@ const schema = new Schema({
   hash: { type: String, require: true, trim: true },
   firstName: { type: String, require: true, trim: true },
   lastName: { type: String, require: true, trim: true },
-  phone: { type: String, require: false, trim: true },
   coffeshop: [{type: mongoose.ObjectId, ref: "Coffeshop"}]
 });
 
