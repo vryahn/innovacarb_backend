@@ -7,6 +7,8 @@ const schema = new Schema({
   phone: { type: String, require: false, trim: true },
   adress: { type: String, require: true, trim: true },
   socialRed: { trype: String, require: false, trim: true },
+  postalCode: { type: String, require: false, trim: true },
+  kgaverage: { type: number, require: false, trim: true }
 });
 
 const model = mongoose.model("Coffeshop", schema);
