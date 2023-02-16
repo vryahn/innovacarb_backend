@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const { create, authenticate } = require("../usecases/user");
+const { create, authenticate, addCoffeShop } = require("../usecases/user");
 
 routes.post("/", async (req, res) => {
   const { email, password } = req.body; //agregar firstname, lastName
@@ -28,11 +28,11 @@ routes.post("/auth", async (req, res) => {
 
 routes.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { email, password } = req.body;
+  const { nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
 
   try {
-    const data = { password };
-    const user = await update(id, email, password);
+    const data = { nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage };
+    const user = await addCoffeShop(id, data);
     res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;

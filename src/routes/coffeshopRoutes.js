@@ -9,7 +9,7 @@ routes.post("/", async (req, res) => {
       res.json({ ok: true, message: "cafeteria agregada:)", payload });
     } catch (error) {
       const { message } = error;
-      res.status(500).json({ ok: false, message }); //500 error de servidor
+      res.status(500).json({ ok: false, message }); 
     }
   });
 
