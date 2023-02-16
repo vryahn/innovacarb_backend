@@ -6,9 +6,9 @@ const schema = new Schema({
   ownerName: { type: String, require: false, unique: false, trime: true },
   phone: { type: String, require: false, trim: true },
   adress: { type: String, require: true, trim: true },
-  socialRed: { trype: String, require: false, trim: true },
+  socialRed: { type: String, require: false, trim: true },
   postalCode: { type: String, require: false, trim: true },
-  kgAverage: { type: number, require: false, trim: true }
+  kgAverage: { type: Number, require: false, trim: true },
 });
 
 const model = mongoose.model("Coffeshop", schema);

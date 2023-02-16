@@ -27,12 +27,13 @@ routes.post("/auth", async (req, res) => {
 });
 
 routes.put("/:id", async (req, res) => {
+  console.log(req.body)
   const { id } = req.params;
-  const { nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
-
+  console.log(req.params)
+  const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body.coffeshop;
+  
   try {
-    const data = { nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage };
-    const user = await addCoffeShop(id, data);
+    const user = await addCoffeShop(id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage);
     res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;

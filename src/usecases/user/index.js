@@ -29,12 +29,13 @@ const authenticate = async (email, password) => {
   return createToken({ sub: user._id });
 };
 
-const addCoffeShop = async (id, nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage)=>{
+const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)=>{
   const datosUsuario= await User.findById(id)
   const coffeshop = datosUsuario.coffeshop
-  const createCoffeShope = await createCoffeshope(nameCafeteria, ownweName, phone, adress, socialRed, postalCode, kgAverage)
+  console.log(datosUsuario)
+  const createCoffeShope = await createCoffeshope(nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)
   coffeshop.push(createCoffeShope._id);
-  return await coffeshop.save();
+  return await datosUsuario.save();
 }
 
 module.exports = {
