@@ -1,5 +1,5 @@
 const routes = require ("express").Router();
-const { create, getAll } = require("../usecases/coffeShop");
+const { create, getAll, getById, update } = require("../usecases/coffeShop");
 
 routes.post("/", async (req, res) => {
     const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body; 
@@ -27,6 +27,29 @@ routes.post("/", async (req, res) => {
     const { id } = req.params;
     try {
       const payload = await getById(id);
+      res.json({ ok: true, payload });
+    } catch (error) {
+      const { message } = error;
+      res.status(400).json({ ok: false, message });
+    }
+  });
+
+  routes.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const payload = await getById(id);
+      res.json({ ok: true, payload });
+    } catch (error) {
+      const { message } = error;
+      res.status(400).json({ ok: false, message });
+    }
+  });
+
+  routes.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage  } = req.body;
+    try {
+      const payload = await update( id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage);
       res.json({ ok: true, payload });
     } catch (error) {
       const { message } = error;
