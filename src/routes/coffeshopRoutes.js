@@ -1,34 +1,12 @@
 const routes = require("express").Router();
 const { authHandler } = require("../middlewares/authHandler");
-const {
-  create,
-  getAll,
-  getById,
-  update,
-  del,
-} = require("../usecases/coffeShop");
+const { create, getAll, getById, update, del } = require("../usecases/coffeShop");
 
 routes.post("/", async (req, res) => {
-  const {
-    nameCafeteria,
-    ownerName,
-    phone,
-    adress,
-    socialRed,
-    postalCode,
-    kgAverage,
-  } = req.body;
+  const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
 
   try {
-    const payload = await create(
-      nameCafeteria,
-      ownerName,
-      phone,
-      adress,
-      socialRed,
-      postalCode,
-      kgAverage
-    );
+    const payload = await create( nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage );
     res.json({ ok: true, message: "cafeteria agregada:)", payload });
   } catch (error) {
     const { message } = error;
@@ -61,7 +39,7 @@ routes.put("/:id", authHandler, async (req, res) => {
   const { id } = req.params;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
   try {
-    const payload = await update( id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage);
+    const payload = await update( id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage );
     res.json({ ok: true, payload });
   } catch (error) {
     const { message } = error;
