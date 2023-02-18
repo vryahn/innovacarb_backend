@@ -15,8 +15,15 @@ const getAll = async () => await Coffeshop.find({});
 
 const getById = async (id) => await Coffeshop.findById(id);
 
+const update = async (id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage) => {
+ 
+  return await Coffeshop.findByIdAndUpdate(id, { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage });
+};
 
 module.exports={
     create,
     del,
+    getAll,
+    getById,
+    update
 }
