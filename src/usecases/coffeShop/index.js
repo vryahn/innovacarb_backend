@@ -11,6 +11,12 @@ const create = async (nameCafeteria, ownerName, phone, adress, socialRed, postal
     return await Coffeshop.findByIdAndDelete(id);
   }
 
+const getAll = async () => await Coffeshop.find({});
+
+const getById = async (id) => await Coffeshop.findById(id);
+
+
 module.exports={
     create,
+    del,
 }
