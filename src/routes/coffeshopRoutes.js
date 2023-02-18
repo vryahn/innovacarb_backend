@@ -34,16 +34,6 @@ routes.post("/", async (req, res) => {
     }
   });
 
-  routes.get("/:id", async (req, res) => {
-    const { id } = req.params;
-    try {
-      const payload = await getById(id);
-      res.json({ ok: true, payload });
-    } catch (error) {
-      const { message } = error;
-      res.status(400).json({ ok: false, message });
-    }
-  });
 
   routes.put("/:id", async (req, res) => {
     const { id } = req.params;
