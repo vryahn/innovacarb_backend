@@ -32,10 +32,14 @@ const authenticate = async (email, password) => {
 const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)=>{
   const datosUsuario= await User.findById(id)
   const coffeshop = datosUsuario.coffeshop
-  console.log(datosUsuario)
+  console.log(datosUsuario)//no olvides quietar esto!!!!
   const createCoffeShope = await createCoffeshope(nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)
   coffeshop.push(createCoffeShope._id);
   return await datosUsuario.save();
+}
+
+const delCoffeshop = async (id)=>{
+
 }
 
 module.exports = {

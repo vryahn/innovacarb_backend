@@ -7,6 +7,9 @@ const create = async (nameCafeteria, ownerName, phone, adress, socialRed, postal
     return await coffeshop.save();
   };
 
+  const del = async (id)=>{
+    return await Coffeshop.findByIdAndDelete(id);
+  }
 
 module.exports={
     create,
