@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const { create, authenticate, addCoffeShop, getAllUsers } = require("../usecases/user");
+const { create, authenticate, addCoffeShop, getAllUsers, getOneUser } = require("../usecases/user");
 
 routes.post("/", async (req, res) => {
   const { email, password } = req.body; //agregar firstname, lastName
@@ -48,6 +48,16 @@ routes.get("/", async (req, res)=>{
   }catch(error){
     const {message} = error;
     res.status(400).json({ok:false, message: error})
+  }
+});
+
+routes.get("/", async (req, res)=>{
+  const { id } = req.params;
+  try{
+    const{email, coffeshop}=await getOneUser(id);
+    res.json({ok: true, payload: {email, coffeshop}});
+  }catch(error){
+    res.status(400).json({ok: false, message: error})
   }
 });
 
