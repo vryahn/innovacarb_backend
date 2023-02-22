@@ -27,7 +27,7 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
-routes.put("/:id", authHandler, async (req, res) => {
+routes.put("/:id", async (req, res) => {
   console.log(req.body)
   const { id } = req.params;
   console.log(req.params)

@@ -36,7 +36,7 @@ routes.get("/:id", async (req, res) => {
   }
 });
 
-routes.put("/:id", authHandler, coffeShopeHandler, async (req, res) => {
+routes.put("/:id",  async (req, res) => {
   const { id } = req.params;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
   try {
@@ -48,7 +48,7 @@ routes.put("/:id", authHandler, coffeShopeHandler, async (req, res) => {
   }
 });
 
-routes.delete("/:id", authHandler, async (req, res) => {
+routes.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const coffeshopdeleted = await del(id);
