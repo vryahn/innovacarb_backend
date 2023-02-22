@@ -5,8 +5,8 @@ const coffeShopeHandler = async (req, res, next) => {
   const { sub } = req.params.token; //sub contiene el id del usuario, para obtener el obj de la bd
   const cafeteria=req.params.id
   try {
-    User.findById(cafeteria)
-    if(cafeteria.includes(sub)){
+    const result = User.findById(sub);
+    if(result.coffeshop.includes(cafeteria)){
     next();
     }
   } catch (error) {

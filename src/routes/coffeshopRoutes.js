@@ -1,5 +1,6 @@
 const routes = require("express").Router();
 const { authHandler } = require("../middlewares/authHandler");
+const {coffeShopeHandler} = require ("../middlewares/coffeShopHandler")
 const { create, getAll, getById, update, del } = require("../usecases/coffeShop");
 
 routes.post("/", async (req, res) => {
@@ -35,7 +36,7 @@ routes.get("/:id", async (req, res) => {
   }
 });
 
-routes.put("/:id", authHandler, async (req, res) => {
+routes.put("/:id", authHandler, coffeShopeHandler, async (req, res) => {
   const { id } = req.params;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
   try {

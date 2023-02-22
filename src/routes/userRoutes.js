@@ -1,8 +1,9 @@
 const routes = require("express").Router();
 const { create, authenticate, addCoffeShop, getAllUsers, getOneUser } = require("../usecases/user");
+const {authHandler}= require ("../middlewares/authHandler")
 
 routes.post("/", async (req, res) => {
-  const { email, password } = req.body; //agregar firstname, lastName
+  const { email, password } = req.body; 
   console.log(req.body);//noo olvides borrar esto!!!!!!!!!
 
   try {
@@ -26,7 +27,7 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
-routes.put("/:id", async (req, res) => {
+routes.put("/:id", authHandler, async (req, res) => {
   console.log(req.body)
   const { id } = req.params;
   console.log(req.params)
