@@ -16,3 +16,11 @@ const updateQuote = async (dateQuote, statusQuote)=>{
 const delQuote = async (id)=>{
     return await Quotes.findByIdAndDelete(id);
 }
+
+module.exports={
+    create, 
+    getAllQuotes,
+    getOneQuote,
+    updateQuote,
+    delQuote
+}
