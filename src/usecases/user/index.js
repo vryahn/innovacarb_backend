@@ -38,13 +38,15 @@ const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialR
   return await datosUsuario.save();
 }
 
-const delCoffeshop = async (id)=>{
+const getAllUsers = async () => await User.find({}).exec();
 
-}
+const getOneUser = async (id) => await User.findById(id).exec();
 
 module.exports = {
   create,
   update,
   authenticate,
-  addCoffeShop
+  addCoffeShop,
+  getAllUsers,
+  getOneUser
 };
