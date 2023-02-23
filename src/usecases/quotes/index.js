@@ -1,6 +1,7 @@
 const Quotes = require ("../../models/quotes").model;
 
-const create = async (dateQuote, statusQuote)=>{
+const create = async (dateQuote, statusQuote=true)=>{
+    console.log("status de la cita:",statusQuote)
     const quote= new Quotes({dateQuote, statusQuote})
     return await quote.save();
 }
