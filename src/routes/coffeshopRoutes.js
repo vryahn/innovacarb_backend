@@ -55,7 +55,7 @@ routes.delete("/:id", async (req, res) => {
     res.json({ ok: true, payload: coffeshopdeleted });
   } catch (error) {
     const { message } = error;
-    res.status(400).json({ ok: false, message });
+    res.status(400).json({ ok: false, message: error });
   }
 });
 
