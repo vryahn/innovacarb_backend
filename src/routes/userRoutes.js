@@ -58,7 +58,8 @@ routes.get("/:id", async (req, res)=>{
     const{email, coffeshop}=await getOneUser(id);
     res.json({ok: true, payload: {email, coffeshop}});
   }catch(error){
-    res.status(400).json({ok: false, message: error})
+    const {message}= error;
+    res.status(400).json({ok: false, message})
   }
 });
 

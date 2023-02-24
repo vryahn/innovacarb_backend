@@ -7,7 +7,7 @@ const create = async (dateQuote, statusQuote) => {
 
 const getAllQuotes = async () => await Quotes.find({});
 
-const getOneQuote = async () => await Quotes.findById(id);
+const getOneQuote = async (id) => await Quotes.findById(id);
 
 const updateQuote = async (dateQuote, statusQuote) => {
   return await Quotes.findByIdAndUpdate(id, { dateQuote, statusQuote });

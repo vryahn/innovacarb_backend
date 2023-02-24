@@ -19,7 +19,7 @@ routes.post("/", async (req, res) => {
   }
 });
 
-routes.pute("/:id", async (req, res) => {
+routes.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { dateQuote } = req.body;
 
@@ -44,12 +44,14 @@ routes.get("/", async (req, res) => {
 
 routes.get("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log("id: ", id)
 
   try {
-    const { dateQuote, statusQuote } = await getOneQuote(id);
-    res.json({ ok: true, payload: { dateQuote, statusQuote } });
+    const payload = await getOneQuote(id);
+    res.json({ ok: true, payload });
   } catch (error) {
-    res.json(400).json({ ok: false, message: error });
+    const { message } = error;
+    res.status(400).json({ ok: false, message });
   }
 });
 
