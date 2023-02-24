@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const {create, updateQuote, getAllQuotes} = require ("../usecases/quotes");
+const {create, updateQuote, getAllQuotes, getOneQuote} = require ("../usecases/quotes");
 
 routes.post("/", async (req,res)=>{
     const {dateQuote, statusQuote} = req.body;
@@ -30,9 +30,22 @@ routes.pute("/:id", async (req, res)=>{
 routes.get("/",async (req, res)=>{
     try{
         const date = await getAllQuotes();
+        res.json({ok:true, message: date})
     }catch(error){
         const {message}= error;
         res.status(400).json({ok: false, message: error});
     }
+});
+
+routes.get("/:id", async (req, res)=>{
+    const {id}= req.params;
+
+    try{
+        const {dateQuote, statusQuote} = await getOneQuote(id);
+        res.json({ok:true, payload: {dateQuote, statusQuote}});
+    }catch(error){
+        res.json(400).json({ok: false, message: error})
+    }
 })
 
+module.exports = routes;
