@@ -3,18 +3,17 @@ const createCoffeshope = require("../coffeShop").create;
 const { hashPassword, verifyPassword } = require("../../lib/encrypt");
 const { createToken, verifyToken } = require("../../lib/jwt");
 
-const create = async (email, password) => {
+const create = async (email, password, firstName, lastName) => {
   const hash = await hashPassword(password);
 
-  const user = new User({ email, hash });
+  const user = new User({ email, hash, firstName, lastName});
 
   return await user.save();
 };
 
-const update = async (id, email, password) => {
-  const hash = await hashPassword(password);
+const update = async (id, email, password, firstName, lastName) => {
 
-  return await User.findByIdAndUpdate(id, { email, hash });
+  return await User.findByIdAndUpdate(id, { email, password, firstName, lastName });
 };
 
 const findByEmail = async (email) => await User.findOne({ email });

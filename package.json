@@ -4,6 +4,7 @@
   "description": "Innovacarb project",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.8.2",
     "stripe": "^11.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
