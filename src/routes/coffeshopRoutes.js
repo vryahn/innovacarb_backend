@@ -2,16 +2,18 @@ const routes = require("express").Router();
 const { authHandler } = require("../middlewares/authHandler");
 const {coffeShopeHandler} = require ("../middlewares/coffeShopHandler")
 const { create, getAll, getById, update, del } = require("../usecases/coffeShop");
+const { addCoffeShop } = require ("../usecases/user")
 
-routes.post("/", async (req, res) => {
+routes.post("/", authHandler, async (req, res) => {
+  const { sub } = req.params.token;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
 
   try {
-    const payload = await create( nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage );
-    res.json({ ok: true, message: "cafeteria agregada:)", payload });
+    const user = await addCoffeShop(sub, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage);
+    res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;
-    res.status(500).json({ ok: false, message });
+    res.status(400).json({ ok: false, message });
   }
 });
 
