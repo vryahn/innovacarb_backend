@@ -27,21 +27,6 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
-routes.put("/:id", async (req, res) => {
-  
-  const { id } = req.params;
-  console.log(req.params)
-  const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body.coffeshop;
-  
-  try {
-    const user = await addCoffeShop(id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage);
-    res.json({ ok: true, payload: user });
-  } catch (error) {
-    const { message } = error;
-    res.status(400).json({ ok: false, message });
-  }
-});
-
 routes.get("/", async (req, res)=>{
   try{
     const user = await getAllUsers();
@@ -63,7 +48,7 @@ routes.get("/:id", async (req, res)=>{
   }
 });
 
-routes.put(`${path}/:id`, async (req, res)=>{
+routes.put("/:id", async (req, res)=>{
   const {id} = req.params;
   const {email, password, firstName, lastName}=req.body;
 
