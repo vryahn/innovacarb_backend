@@ -1,11 +1,5 @@
 const routes = require("express").Router();
-const {
-  create,
-  updateQuote,
-  getAllQuotes,
-  getOneQuote,
-  delQuote,
-} = require("../usecases/quotes");
+const { create, updateQuote, getAllQuotes, getOneQuote, delQuote } = require("../usecases/quotes");
 
 routes.post("/", async (req, res) => {
   const { dateQuote, statusQuote } = req.body;
@@ -44,7 +38,7 @@ routes.get("/", async (req, res) => {
 
 routes.get("/:id", async (req, res) => {
   const { id } = req.params;
-  console.log("id: ", id)
+  console.log("id: ", id);
 
   try {
     const payload = await getOneQuote(id);
