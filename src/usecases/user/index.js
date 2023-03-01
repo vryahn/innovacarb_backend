@@ -3,10 +3,10 @@ const createCoffeshope = require("../coffeShop").create;
 const { hashPassword, verifyPassword } = require("../../lib/encrypt");
 const { createToken, verifyToken } = require("../../lib/jwt");
 
-const create = async (email, password, firstName, lastName) => {
+const create = async (email, password, firstName, lastName, rol) => {
   const hash = await hashPassword(password);
 
-  const user = new User({ email, hash, firstName, lastName});
+  const user = new User({ email, hash, firstName, lastName, rol});
 
   return await user.save();
 };

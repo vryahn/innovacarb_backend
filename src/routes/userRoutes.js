@@ -3,10 +3,10 @@ const { create, authenticate, getAllUsers, getOneUser, update } = require("../us
 const { authHandler } = require("../middlewares/authHandler");
 
 routes.post("/", async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, firstName, lastName, rol } = req.body;
 
   try {
-    const payload = await create(email, password, firstName, lastName);
+    const payload = await create(email, password, firstName, lastName, rol);
     res.json({ ok: true, message: "Usuario creado :)", payload });
   } catch (error) {
     const { message } = error;
