@@ -1,16 +1,14 @@
 const User = require("../usecases/user");
 
 const adminHandler = async (req, res, next) => {
-  const { sub } = req.params.token; //sub contiene el id del usuario, para obtener el obj de la bd
-  const cafeteria = req.params.id;
- const { rol } = req.params.token;
+  const { sub, rol } = req.params.token; //sub contiene el id del usuario, para obtener el obj de la bd
 
   const result = await User.getOneUser(sub);
-  console.log(result);
-  if (result.coffeshop.includes(cafeteria)) {
+  if (result.rol == rol && result.rol == "admin") {
+    console.log("resultado: ", result);
     next();
   } else {
-    res.status(401).json({ ok: false, message: "ups, no es tu cafeteria" });
+    res.status(401).json({ ok: false, message: "ups, no eres admin" });
   }
 };
 

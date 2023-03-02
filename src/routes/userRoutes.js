@@ -1,6 +1,7 @@
 const routes = require("express").Router();
 const { create, authenticate, getAllUsers, getOneUser, update } = require("../usecases/user");
 const { authHandler } = require("../middlewares/authHandler");
+const {adminHandler}= require("../middlewares/adminHandler");
 
 routes.post("/", async (req, res) => {
   const { email, password, firstName, lastName, rol } = req.body;
@@ -26,7 +27,7 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
-routes.get("/", async (req, res) => {
+routes.get("/", [authHandler, adminHandler], async (req, res) => {
   try {
     const user = await getAllUsers();
     res.json({ ok: true, payload: user });

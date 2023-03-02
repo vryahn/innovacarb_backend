@@ -25,7 +25,7 @@ const authenticate = async (email, password) => {
   const isVerified = await verifyPassword(password, hash);
   if (!isVerified)
     throw new Error("Ups, tu pass esta mal, intentalo nuevamente");
-  return createToken({ sub: user._id });
+  return createToken({ sub: user._id, rol: user.rol });
 };
 
 const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)=>{
