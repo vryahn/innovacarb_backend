@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const { create, authenticate, getAllUsers, getOneUser, update } = require("../usecases/user");
+const { create, authenticate, getAllUsers, getOneUser, update, inactiveUser } = require("../usecases/user");
 const { authHandler } = require("../middlewares/authHandler");
 const {adminHandler}= require("../middlewares/adminHandler");
 
@@ -58,6 +58,18 @@ routes.put("/:id", async (req, res) => {
   } catch (error) {
     const { message } = error;
     res.status(400).json({ ok: false, message });
+  }
+});
+
+routes.delete("/:id", async (req, res)=>{
+  const { id } = req.params;
+  
+  try{
+    const isActiveUser = await inactiveUser(id);
+    res.json({ ok: true, payload: isActiveUser });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message: error});
   }
 });
 

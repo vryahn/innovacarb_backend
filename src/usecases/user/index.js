@@ -3,10 +3,10 @@ const createCoffeshope = require("../coffeShop").create;
 const { hashPassword, verifyPassword } = require("../../lib/encrypt");
 const { createToken, verifyToken } = require("../../lib/jwt");
 
-const create = async (email, password, firstName, lastName, rol) => {
+const create = async (email, password, firstName, lastName, rol, isActive) => {
   const hash = await hashPassword(password);
 
-  const user = new User({ email, hash, firstName, lastName, rol});
+  const user = new User({ email, hash, firstName, lastName, rol, isActive});
 
   return await user.save();
 };
@@ -29,9 +29,8 @@ const authenticate = async (email, password) => {
 };
 
 const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)=>{
-  const datosUsuario= await User.findById(id)
-  const coffeshop = datosUsuario.coffeshop
-  console.log(datosUsuario)//no olvides quietar esto!!!!
+  const datosUsuario= await User.findById(id);
+  const coffeshop = datosUsuario.coffeshop;
   const createCoffeShope = await createCoffeshope(nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage)
   coffeshop.push(createCoffeShope._id);
   return await datosUsuario.save();
@@ -41,11 +40,19 @@ const getAllUsers = async () => await User.find({}).exec();
 
 const getOneUser = async (id) => await User.findById(id).exec();
 
+const inactiveUser = async (id)=> {
+  
+  const dataUser = await User.findByIdAndUpdate(id);
+  dataUser.isActive = false;
+  return await dataUser.save();
+}
+
 module.exports = {
   create,
   update,
   authenticate,
   addCoffeShop,
   getAllUsers,
-  getOneUser
+  getOneUser,
+  inactiveUser
 };

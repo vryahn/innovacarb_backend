@@ -51,8 +51,9 @@ routes.put("/:id", async (req, res) => {
 });
 
 routes.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  
   try {
-    const { id } = req.params;
     const coffeshopdeleted = await del(id);
     res.json({ ok: true, payload: coffeshopdeleted });
   } catch (error) {

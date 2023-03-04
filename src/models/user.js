@@ -7,7 +7,8 @@ const schema = new Schema({
   firstName: { type: String, required: true, trim: false },
   lastName: { type: String, required: true, trim: false },
   coffeshop: [{ type: mongoose.ObjectId, ref: "Coffeshop" }],
-  rol: { type: String, required: true, default: "customer", enum: { values: ["customer", "admin", "collector"] },}
+  rol: { type: String, required: true, default: "customer", enum: { values: ["customer", "admin", "collector"] },},
+  isActive: { type: Boolean, default: true }
 });
 
 const model = mongoose.model("User", schema);
