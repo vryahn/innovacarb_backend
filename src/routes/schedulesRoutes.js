@@ -1,11 +1,11 @@
 const routes = require("express").Router();
-const { create, updateQuote, getAllQuotes, getOneQuote, delQuote } = require("../usecases/quotes");
+const { create, updateSchedules, getAllSchedules, getOneSchedules, delSchedules } = require("../usecases/schedules");
 
 routes.post("/", async (req, res) => {
-  const { dateQuote, statusQuote } = req.body;
+  const { dateSchedules, statusSchedules } = req.body;
 
   try {
-    const payload = await create(dateQuote, statusQuote);
+    const payload = await create(dateSchedules, statusSchedules);
     res.json({ ok: true, message: "Cita creada!", payload });
   } catch (error) {
     const { message } = error;
@@ -15,10 +15,10 @@ routes.post("/", async (req, res) => {
 
 routes.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { dateQuote } = req.body;
+  const { dateSchedules } = req.body;
 
   try {
-    const date = await updateQuote(id, dateQuote);
+    const date = await updateSchedules(id, dateSchedules);
     res.json({ ok: true, payload: date });
   } catch (error) {
     const { message } = error;
@@ -28,7 +28,7 @@ routes.put("/:id", async (req, res) => {
 
 routes.get("/", async (req, res) => {
   try {
-    const date = await getAllQuotes();
+    const date = await getAllSchedules();
     res.json({ ok: true, message: date });
   } catch (error) {
     const { message } = error;
@@ -41,7 +41,7 @@ routes.get("/:id", async (req, res) => {
   console.log("id: ", id);
 
   try {
-    const payload = await getOneQuote(id);
+    const payload = await getOneSchedules(id);
     res.json({ ok: true, payload });
   } catch (error) {
     const { message } = error;
@@ -52,7 +52,7 @@ routes.get("/:id", async (req, res) => {
 routes.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const date = await delQuote(id);
+    const date = await delSchedules(id);
     res.json({ ok: true, payload: date });
   } catch (error) {
     const { message } = error;
