@@ -1,7 +1,7 @@
 const Schedules = require("../../models/schedules").model;
 
-const create = async (dateSchedules, statusSchedules) => {
-  const schedules = new Schedules({ dateSchedules, statusSchedules });
+const create = async (dateSchedules, statusSchedules, coffeshop) => {
+  const schedules = new Schedules({ dateSchedules, statusSchedules, coffeshop });
   return await schedules.save();
 };
 

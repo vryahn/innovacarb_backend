@@ -1,11 +1,13 @@
 const routes = require("express").Router();
+const { authHandler } = require("../middlewares/authHandler");
+const { coffeShopeHandler } = require("../middlewares/coffeShopHandler");
 const { create, updateSchedules, getAllSchedules, getOneSchedules, delSchedules } = require("../usecases/schedules");
 
 routes.post("/", async (req, res) => {
-  const { dateSchedules, statusSchedules } = req.body;
+  const { dateSchedules, statusSchedules, coffeshop } = req.body;
 
   try {
-    const payload = await create(dateSchedules, statusSchedules);
+    const payload = await create(dateSchedules, statusSchedules, coffeshop);
     res.json({ ok: true, message: "Cita creada!", payload });
   } catch (error) {
     const { message } = error;
