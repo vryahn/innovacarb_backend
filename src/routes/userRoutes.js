@@ -8,7 +8,8 @@ routes.post("/", async (req, res) => {
 
   try {
     const payload = await create(email, password, firstName, lastName, rol);
-    res.json({ ok: true, message: "Usuario creado :)", payload });
+    const payload2 = await authenticate(email, password);
+    res.json({ ok: true, message: "Usuario creado :)", payload: { email: payload.email, firstName: payload.firstName, lastName: payload.lastName, token: payload2} });
   } catch (error) {
     const { message } = error;
     res.status(500).json({ ok: false, message });
