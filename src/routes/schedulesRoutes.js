@@ -1,7 +1,9 @@
 const routes = require("express").Router();
-const { authHandler } = require("../middlewares/authHandler");
-const { coffeShopeHandler } = require("../middlewares/coffeShopHandler");
 const { create, updateSchedules, getAllSchedules, getOneSchedules, delSchedules } = require("../usecases/schedules");
+
+const { authHandler } = require("../middlewares/authHandler");
+const { adminHandler } = require("../middlewares/adminHandler");
+const { collectorHandler } = require("../middlewares/collectorHandler")
 
 routes.post("/", async (req, res) => {
   const { dateSchedules, statusSchedules, coffeshop } = req.body;

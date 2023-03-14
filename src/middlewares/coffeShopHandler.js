@@ -5,7 +5,7 @@ const coffeShopeHandler = async (req, res, next) => {
   const cafeteria = req.params.id;
 
   const result = await User.getOneUser(sub);
-  console.log(result);
+  console.log("reultado cafeteria:",result);
   if (result.coffeshop.includes(cafeteria)) {
     next();
   } else {

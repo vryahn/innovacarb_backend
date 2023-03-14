@@ -9,6 +9,7 @@ const schema = new Schema({
   socialRed: { type: String, require: false, trim: true },
   postalCode: { type: String, require: false, trim: true },
   kgAverage: { type: Number, require: false, trim: true },
+  kgContributions: {type: Number, require: false, default: 0}
 });
 
 const model = mongoose.model("Coffeshop", schema);

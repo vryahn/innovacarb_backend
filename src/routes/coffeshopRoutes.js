@@ -1,10 +1,14 @@
 const routes = require("express").Router();
-const { authHandler } = require("../middlewares/authHandler");
-const { coffeShopeHandler } = require("../middlewares/coffeShopHandler");
 const { getAll, getById, update, del } = require("../usecases/coffeShop");
 const { addCoffeShop } = require("../usecases/user");
 
-routes.post("/", authHandler, async (req, res) => {
+const { authHandler } = require("../middlewares/authHandler");
+const { adminHandler } = require("../middlewares/adminHandler");
+const { collectorHandler } = require("../middlewares/collectorHandler");
+const { coffeShopeHandler  } = require("../middlewares/coffeShopHandler")
+
+
+routes.post("/", [ authHandler ], async (req, res) => {
   const { sub } = req.params.token;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
 
