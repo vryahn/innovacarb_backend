@@ -21,7 +21,7 @@ routes.post("/", [ authHandler ], async (req, res) => {
   }
 });
 
-routes.get("/", async (req, res) => {
+routes.get("/", [ authHandler, adminHandler, collectorHandler ], async (req, res) => {
   try {
     const payload = await getAll();
     res.json({ ok: true, payload });
@@ -31,7 +31,7 @@ routes.get("/", async (req, res) => {
   }
 });
 
-routes.get("/:id", async (req, res) => {
+routes.get("/:id", [ authHandler, coffeShopeHandler, collectorHandler, adminHandler ],async (req, res) => {
   const { id } = req.params;
   try {
     const payload = await getById(id);
@@ -42,7 +42,7 @@ routes.get("/:id", async (req, res) => {
   }
 });
 
-routes.put("/:id", async (req, res) => {
+routes.put("/:id", [authHandler], async (req, res) => {
   const { id } = req.params;
   const { nameCafeteria, ownerName, phone, adress, socialRed, postalCode, kgAverage } = req.body;
   try {
@@ -54,7 +54,7 @@ routes.put("/:id", async (req, res) => {
   }
 });
 
-routes.delete("/:id", async (req, res) => {
+routes.delete("/:id", [ authHandler ],async (req, res) => {
   const { id } = req.params;
   
   try {
