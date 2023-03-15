@@ -9,9 +9,13 @@ routes.post("/", async (req, res) => {
   const { email, password, firstName, lastName, rol } = req.body;
 
   try {
+    if( email && password && firstName && lastName ){
     const payload = await create(email, password, firstName, lastName, rol);
     const payload2 = await authenticate(email, password);
     res.json({ ok: true, message: "Usuario creado :)", payload: { email: payload.email, firstName: payload.firstName, lastName: payload.lastName, token: payload2} });
+    }else{
+      throw new Error("todos los campos son necesarios maifriend!")
+    }
   } catch (error) {
     const { message } = error;
     res.status(500).json({ ok: false, message });

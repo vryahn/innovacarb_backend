@@ -38,7 +38,7 @@ const addCoffeShop = async (id, nameCafeteria, ownerName, phone, adress, socialR
 
 const getAllUsers = async () => await User.find({}).exec();
 
-const getOneUser = async (id) => await User.findById(id).exec();
+const getOneUser = async (id) => await User.findById(id).populate("coffeshop").exec();
 
 const inactiveUser = async (id)=> {
   
